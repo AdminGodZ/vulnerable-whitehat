@@ -1,0 +1,8 @@
+.sticky-sidebar {
+  top: 2rem;
+}
+
+.toast-pre {
+  margin: 0;
+  white-space: pre-wrap;
+}

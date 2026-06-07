@@ -1,0 +1,37 @@
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
+  datasource:
+    url: jdbc:h2:mem:mydb
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    open-in-view: false
+  web:
+    resources:
+      static-locations: # quickhack to facilitate static development
+        - file:src/main/resources/static/
+        - classpath:/static/
+server:
+  error:
+    include-stacktrace: never
+    include-message: never
+    include-binding-errors: never
+logging:
+  pattern:
+    dateformat: HH:mm:ss
+  level:
+    org.hibernate.SQL: DEBUG
+    org.springframework.security.web.csrf: DEBUG
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+app:
+  security:
+    # Fuer Produktion per Umgebungsvariable VULNERAPP_REMEMBER_ME_KEY auf einen langen Zufallswert setzen.
+    # Der Default ist nur fuer die lokale Demo, damit die Applikation ohne Extra-Setup startet.
+    remember-me-key: ${VULNERAPP_REMEMBER_ME_KEY:local-demo-remember-me-key-change-me-9e5f76a2a7744b84a2de43f69d5d9d4e}
